@@ -1284,4 +1284,3 @@ window.addEventListener("DOMContentLoaded", () => {
     // statusText DOM init
     statusText = document.getElementById('statusText');
     currentStatusText = '';
-
