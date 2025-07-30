@@ -9,39 +9,6 @@ let currentStatusText = "";
 // --- /statusText globals ---
 
  const videoSources = [
-      
-      {
-      zoom: ["./eizoEV2455/konpass1.mp4"],
-        xMin: 0.3, xMax: 0.7,
-        yMin: 0.0, yMax: 1.0,
-        hitPoint(x, y){
-          return x >= this.xMin - mapMargin && x <= this.xMax + mapMargin&&
-                 y >= this.yMin - mapMargin && y <= this.yMax + mapMargin;
-        },
-          mapToTime(x, y, duration, distVal){
-        if (!this.handSizeSeek) return 0;
-        const base = this.handSizeSeek*1.4;
-        const ratio = distVal / base;
-        const clip = Math.min(Math.max(ratio, 0), 1);
-        return clip * (duration - 1/60);
-      }
-      },
-       {
-      zoom: ["./eizoEV2455/konpass2.mp4"],
-        xMin: 0.3, xMax: 0.7,
-        yMin: 0.0, yMax: 1.0,
-        hitPoint(x, y){
-          return x >= this.xMin - mapMargin && x <= this.xMax + mapMargin&&
-                 y >= this.yMin - mapMargin && y <= this.yMax + mapMargin;
-        },
-          mapToTime(x, y, duration, distVal){
-        if (!this.handSizeSeek) return 0;
-        const base = this.handSizeSeek*1.4;
-        const ratio = distVal / base;
-        const clip = Math.min(Math.max(ratio, 0), 1);
-        return clip * (duration - 1/60);
-      }
-      },
       {
       zoom: ["./eizoEV2455/zoom1.mp4"],
         xMin: 0.3, xMax: 0.7,
@@ -74,36 +41,7 @@ let currentStatusText = "";
         return clip * (duration - 1/60);
       }
       },
-      {
-      src:"./eizoEV2455/swipe1.mp4",
-         xMin: 0.1, xMax: 0.9,
-         yMin: 0.3, yMax: 0.7,
-      hitPoint(x, y){
-      return x >= this.xMin - mapMargin && x <= this.xMax + mapMargin
-          && y >= this.yMin - mapMargin && y <= this.yMax + mapMargin;
-      },
-      
-      mapToTime(x, y, duration){
-        const t = (y - this.yMin)/(this.yMax - this.yMin);
-        const clip = Math.min(Math.max(t, 0), 1);
-        return (1-clip) * duration;
-      }
-      },
-       {
-      src:"./eizoEV2455/swipe2.mp4",
-         xMin: 0.1, xMax: 0.9,
-         yMin: 0.3, yMax: 0.7,
-      hitPoint(x, y){
-      return x >= this.xMin - mapMargin && x <= this.xMax + mapMargin
-          && y >= this.yMin - mapMargin && y <= this.yMax + mapMargin;
-      },
-      
-      mapToTime(x, y, duration){
-        const t = (y - this.yMin)/(this.yMax - this.yMin);
-        const clip = Math.min(Math.max(t, 0), 1);
-        return (1-clip) * duration;
-      }
-      },
+     
          {
       zoom: ["./eizoEV2455/densyaZoom.mp4"],
         xMin: 0.3, xMax: 0.7,
@@ -180,51 +118,6 @@ let currentStatusText = "";
         return (clip) * duration;
       }
       },
-      {
-      src:"./eizoEV2455/taki2.mp4",
-         xMin: 0.1, xMax: 0.9,
-         yMin: 0.0, yMax: 1.0,
-      hitPoint(x, y){
-      return x >= this.xMin - mapMargin && x <= this.xMax + mapMargin
-          && y >= this.yMin - mapMargin && y <= this.yMax + mapMargin;
-      },
-      
-      mapToTime(x, y, duration){
-        const t = (y - this.yMin)/(this.yMax - this.yMin);
-        const clip = Math.min(Math.max(t, 0), 1);
-        return (clip) * duration;
-      }
-      }, 
-      {
-      src:"./eizoEV2455/jagchi.mp4",
-         xMin: 0.1, xMax: 0.9,
-         yMin: 0.0, yMax: 1.0,
-      hitPoint(x, y){
-      return x >= this.xMin - mapMargin && x <= this.xMax + mapMargin
-          && y >= this.yMin - mapMargin && y <= this.yMax + mapMargin;
-      },
-      
-      mapToTime(x, y, duration){
-        const t = (y - this.yMin)/(this.yMax - this.yMin);
-        const clip = Math.min(Math.max(t, 0), 1);
-        return (clip) * duration;
-      }
-      },
-       {
-      src:"./eizoEV2455/glasses.mp4",
-         xMin: 0.1, xMax: 0.9,
-         yMin: 0.0, yMax: 1.0,
-      hitPoint(x, y){
-      return x >= this.xMin - mapMargin && x <= this.xMax + mapMargin
-          && y >= this.yMin - mapMargin && y <= this.yMax + mapMargin;
-      },
-      
-      mapToTime(x, y, duration){
-        const t = (x - this.xMin)/(this.xMax - this.xMin);
-        const clip = Math.min(Math.max(t, 0), 1);
-        return clip * duration;
-      }
-      },
        {
       src:"./eizoEV2455/buildingWave.mp4",
          xMin: 0.1, xMax: 0.9,
@@ -287,57 +180,8 @@ let currentStatusText = "";
         return (1 - clip) * duration - 1.5;
       }
       },
-    
-      {
-      src: "./eizoEV2455/tori.mp4",
-      xMin: 0.3, xMax: 0.7,
-      yMin: 0.0, yMax: 1.0,
-      marginOn: true,
-      hitPoint(x, y){
-      return x >= this.xMin - mapMargin && x <= this.xMax + mapMargin
-          && y >= this.yMin - mapMargin && y <= this.yMax + mapMargin;
-      },
-      
-      mapToTime(x, y, duration){
-        const t = (x - this.xMin)/(this.xMax - this.xMin);
-        const clip = Math.min(Math.max(t, 0.01), 0.99);
-        return (1 - clip) * duration - 1.5;
-      }
-      },
       {
       src: "./eizoEV2455/fune.mp4",
-      xMin: 0.3, xMax: 0.7,
-      yMin: 0.0, yMax: 1.0,
-      marginOn: true,
-      hitPoint(x, y){
-      return x >= this.xMin - mapMargin && x <= this.xMax + mapMargin
-          && y >= this.yMin - mapMargin && y <= this.yMax + mapMargin;
-      },
-      
-      mapToTime(x, y, duration){
-        const t = (x - this.xMin)/(this.xMax - this.xMin);
-        const clip = Math.min(Math.max(t, 0.01), 0.99);
-        return (clip) * duration - 1.5;
-      }
-      },
-       {
-      src: "./eizoEV2455/rittaiDoro1.mp4",
-      xMin: 0.3, xMax: 0.7,
-      yMin: 0.0, yMax: 1.0,
-      marginOn: true,
-      hitPoint(x, y){
-      return x >= this.xMin - mapMargin && x <= this.xMax + mapMargin
-          && y >= this.yMin - mapMargin && y <= this.yMax + mapMargin;
-      },
-      
-      mapToTime(x, y, duration){
-        const t = (x - this.xMin)/(this.xMax - this.xMin);
-        const clip = Math.min(Math.max(t, 0.01), 0.99);
-        return (clip) * duration - 1.5;
-      }
-      },
-        {
-      src: "./eizoEV2455/fudepen.mp4",
       xMin: 0.3, xMax: 0.7,
       yMin: 0.0, yMax: 1.0,
       marginOn: true,
@@ -414,74 +258,6 @@ let currentStatusText = "";
         const t = (y - this.yMin)/(this.yMax - this.yMin);
         const clip = Math.min(Math.max(t, 0.01), 0.99);
         return (1 - clip) * duration;
-      }
-      },
-      {
-      src: "./eizoEV2455/tamago.mp4",
-      xMin: 0.1, xMax: 0.9,
-      yMin: 0.1, yMax: 0.9,
-      
-      hitPoint(x, y){
-      return x >= this.xMin - mapMargin && x <= this.xMax + mapMargin
-          && y >= this.yMin - mapMargin && y <= this.yMax + mapMargin;
-      },
-      
-      mapToTime(x, y, duration){
-        const t = (y - this.yMin)/(this.yMax - this.yMin);
-        const clip = Math.min(Math.max(t, 0.01), 0.99);
-        return (clip) * duration;
-      }
-      },
-       {
-      src: "./eizoEV2455/keyboadA2.mp4",
-      xMin: 0.3, xMax: 0.7,
-      yMin: 0.1, yMax: 0.9,
-      marginOn: true, 
-      hitPoint(x, y){
-      return x >= this.xMin - mapMargin && x <= this.xMax + mapMargin
-          && y >= this.yMin - mapMargin && y <= this.yMax + mapMargin;
-      },
-      
-      mapToTime(x, y, duration){
-        const t = (x - this.xMin)/(this.xMax - this.xMin);
-        const clip = Math.min(Math.max(t, 0.01), 0.99);
-        return (1-clip) * duration;
-      }
-      },
-       {
-      src: "./eizoEV2455/keyboadA1.mp4",
-      xMin: 0.3, xMax: 0.7,
-      yMin: 0.1, yMax: 0.9,
-      marginOn: true, 
-      hitPoint(x, y){
-      return x >= this.xMin - mapMargin && x <= this.xMax + mapMargin
-          && y >= this.yMin - mapMargin && y <= this.yMax + mapMargin;
-      },
-      
-      mapToTime(x, y, duration){
-        const t = (x - this.xMin)/(this.xMax - this.xMin);
-        const clip = Math.min(Math.max(t, 0.01), 0.99);
-        return (1-clip) * duration;
-      }
-      },
-      {
-        src: "./eizoEV2455/sinPoll.mp4",
-        start: {x: 0.7, y: 0.7},
-        end:   {x: 0.3, y: 0.3}, 
-      },
-      {
-      src: "./eizoEV2455/densyaYoko.mp4",
-      xMin: 0.3, xMax: 0.7,
-      yMin: 0.1, yMax: 0.9,
-      hitPoint(x, y){
-      return x >= this.xMin - mapMargin && x <= this.xMax + mapMargin
-          && y >= this.yMin - mapMargin && y <= this.yMax + mapMargin;
-      },
-      
-      mapToTime(x, y, duration){
-        const t = (x - this.xMin)/(this.xMax - this.xMin);
-        const clip = Math.min(Math.max(t, 0.01), 0.99);
-        return (clip) * duration;
       }
       },
       {
@@ -562,38 +338,6 @@ let currentStatusText = "";
         const t = (x - this.xMin)/(this.xMax - this.xMin);
         const clip = Math.min(Math.max(t, 0.01), 0.99);
         return (1-clip) * duration;
-      }
-      },
-          {
-      src: "./eizoEV2455/bottle.mp4",
-      xMin: 0.3, xMax: 0.7,
-      yMin: 0.1, yMax: 0.9,
-      
-      hitPoint(x, y){
-      return x >= this.xMin - mapMargin && x <= this.xMax + mapMargin
-          && y >= this.yMin - mapMargin && y <= this.yMax + mapMargin;
-      },
-      
-      mapToTime(x, y, duration){
-        const t = (x - this.xMin)/(this.xMax - this.xMin);
-        const clip = Math.min(Math.max(t, 0.01), 0.99);
-        return (clip) * duration;
-      }
-      },
-                {
-      src: "./eizoEV2455/bottle02.mp4",
-      xMin: 0.3, xMax: 0.7,
-      yMin: 0.1, yMax: 0.9,
-      
-      hitPoint(x, y){
-      return x >= this.xMin - mapMargin && x <= this.xMax + mapMargin
-          && y >= this.yMin - mapMargin && y <= this.yMax + mapMargin;
-      },
-      
-      mapToTime(x, y, duration){
-        const t = (x - this.xMin)/(this.xMax - this.xMin);
-        const clip = Math.min(Math.max(t, 0.01), 0.99);
-        return (clip) * duration;
       }
       },
      {
